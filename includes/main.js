@@ -25,6 +25,7 @@ function initiateApp() {
   */
   makeGallery(pictures);
   addModalCloseHandler();
+
 }
 
 function makeGallery(imageArray) {
@@ -33,8 +34,18 @@ function makeGallery(imageArray) {
   for (var x = 0; x < imageArray.length; x++) {
     var pictureUrl = pictures[x];
     //console.log('from array', pictureUrl);
-    displayImage(pictureUrl);
+    figureCaption = $('<figurecaption>');
+    var filename = pictureUrl.substr(7);
+    figureCaption.text(filename);
 
+    figure = $('<figure>');
+    figure.addClass('imageGallery').addClass('col-xs-12').addClass('col-sm-6').addClass('col-md-4');
+    figure.css('background-image', 'url("' + pictureUrl + '")');
+    figure.append(figureCaption);
+
+    $("#gallery").append(figure);
+
+    //$('#gallery').on('click', 'figure', displayImage);
   }
   //create a loop to go through the images in the imageArray
   //create the elements needed for each picture, store the elements in variable
@@ -53,23 +64,6 @@ function addModalCloseHandler() {
 }
 
 function displayImage(single) {
-
-  figureCaption = $('<figurecaption>');
-  var filename = single.substr(7);
-  figureCaption.text(filename);
-
-  figure = $('<figure>');
-  figure.addClass('imageGallery').addClass('col-xs-12').addClass('col-sm-6').addClass('col-md-4');
-  figure.css('background-image','url("' + single + '")');
-  figure.append(figureCaption);
-
-  $("#gallery").append(figure);
-
-
-
-
-
-
 
 
   //find the url of the image by grabbing the background-image source, store it in a variable
