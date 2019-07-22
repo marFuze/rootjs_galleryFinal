@@ -19,23 +19,36 @@ var pictures = [
   'images/pretty.jpg',
 ];
 
+var pictureObjectsCollection = [];
+
 function initiateApp() {
   /*advanced: add jquery sortable call here to make the gallery able to be sorted
   	//on change, rebuild the images array into the new order
   */
+  makePictureObjectsCollection(pictures);
   makeGallery(pictures);
   addModalCloseHandler();
 
 }
 
+function makePictureObjectsCollection(imageArray) {
+  for (var x = 0; x < imageArray.length; x++) {
+    var url = pictures[x];
+    var filename = pictureUrl.substr(7);
+    var pictureObject = {};
+    pictureObject.url = url;
+    pictureObject.filename = filename;
+    pictureObjectsGallery.push(pictureObject);
+}
+}
+
 function makeGallery(imageArray) {
   //use loops and jquery dom creation to make the html structure inside the #gallery section
+for (var x = 0; x < imageArray.length; x++) {
 
-  for (var x = 0; x < imageArray.length; x++) {
-    var pictureUrl = pictures[x];
     //console.log('from array', pictureUrl);
     figureCaption = $('<figurecaption>');
-    var filename = pictureUrl.substr(7);
+
     figureCaption.text(filename);
 
     figure = $('<figure>');
@@ -44,9 +57,10 @@ function makeGallery(imageArray) {
     figure.append(figureCaption);
 
     $("#gallery").append(figure);
-
     //$('#gallery').on('click', 'figure', displayImage);
   }
+
+
   //create a loop to go through the images in the imageArray
   //create the elements needed for each picture, store the elements in variable
 
