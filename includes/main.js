@@ -26,7 +26,7 @@ function initiateApp() {
   	//on change, rebuild the images array into the new order
   */
   makePictureObjectsCollection(pictures);
-  makeGallery(pictures);
+  makeGallery(pictureObjectsCollection);
   addModalCloseHandler();
 
 }
@@ -34,26 +34,27 @@ function initiateApp() {
 function makePictureObjectsCollection(imageArray) {
   for (var x = 0; x < imageArray.length; x++) {
     var url = pictures[x];
-    var filename = pictureUrl.substr(7);
+    var filename = url.substr(7);
     var pictureObject = {};
     pictureObject.url = url;
     pictureObject.filename = filename;
-    pictureObjectsGallery.push(pictureObject);
+    pictureObjectsCollection.push(pictureObject);
 }
+console.log(pictureObjectsCollection);
 }
 
-function makeGallery(imageArray) {
+function makeGallery(imageObjectsArray) {
   //use loops and jquery dom creation to make the html structure inside the #gallery section
-for (var x = 0; x < imageArray.length; x++) {
-
+for (var x = 0; x < imageObjectsArray.length; x++) {
+    object = imageObjectsArray[x];
     //console.log('from array', pictureUrl);
     figureCaption = $('<figurecaption>');
 
-    figureCaption.text(filename);
+    figureCaption.text(object.filename);
 
     figure = $('<figure>');
     figure.addClass('imageGallery').addClass('col-xs-12').addClass('col-sm-6').addClass('col-md-4');
-    figure.css('background-image', 'url("' + pictureUrl + '")');
+    figure.css('background-image', 'url("' + object.url + '")');
     figure.append(figureCaption);
 
     $("#gallery").append(figure);
