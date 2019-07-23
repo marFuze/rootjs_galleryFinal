@@ -28,6 +28,11 @@ function initiateApp() {
   makePictureObjectsCollection(pictures);
   makeGallery(pictureObjectsCollection);
   addModalCloseHandler();
+  sortGallery();
+}
+
+function sortGallery() {
+  $('#gallery').sortable();
 }
 
 function makePictureObjectsCollection(imageArray) {
