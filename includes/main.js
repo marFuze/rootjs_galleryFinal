@@ -39,13 +39,13 @@ function makePictureObjectsCollection(imageArray) {
     pictureObject.url = url;
     pictureObject.filename = filename;
     pictureObjectsCollection.push(pictureObject);
-}
-console.log(pictureObjectsCollection);
+  }
+  console.log(pictureObjectsCollection);
 }
 
 function makeGallery(imageObjectsArray) {
   //use loops and jquery dom creation to make the html structure inside the #gallery section
-for (var x = 0; x < imageObjectsArray.length; x++) {
+  for (var x = 0; x < imageObjectsArray.length; x++) {
     object = imageObjectsArray[x];
     //console.log('from array', pictureUrl);
     figureCaption = $('<figurecaption>');
@@ -56,7 +56,9 @@ for (var x = 0; x < imageObjectsArray.length; x++) {
     figure.addClass('imageGallery').addClass('col-xs-12').addClass('col-sm-6').addClass('col-md-4');
     figure.css('background-image', 'url("' + object.url + '")');
     figure.append(figureCaption);
-
+    figure.data('url', object.url);
+    figure.data('filename', object.filename);
+    figure.on("click",displayImage);
     $("#gallery").append(figure);
     //$('#gallery').on('click', 'figure', displayImage);
   }
@@ -78,9 +80,16 @@ function addModalCloseHandler() {
   //for more info, check here: https://www.w3schools.com/bootstrap/bootstrap_ref_js_modal.asp
 }
 
-function displayImage(single) {
+function displayImage() {
+ var figureClicked = $(this);
+ var figureData = figureClicked.data();
+//console.log('filename', filenameData);
+ var imageFilename = figureData.filename;
+ var imageUrl = figureData.url;
+ console.log('figureData', imageFilename, imageUrl);
 
 
+//console.log('figure clicked css', imageUrl);
   //find the url of the image by grabbing the background-image source, store it in a variable
   //grab the direct url of the image by getting rid of the other pieces you don't need
 
