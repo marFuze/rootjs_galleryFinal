@@ -87,6 +87,26 @@ function displayImage() {
  var imageFilename = figureData.filename;
  var imageUrl = figureData.url;
  console.log('figureData', imageFilename, imageUrl);
+ // <div class="modal fade" id="galleryModal" role="dialog">
+ //   <div class="modal-dialog">
+ //
+ //     <!-- Modal content-->
+ //     <div class="modal-content">
+ //       <div class="modal-header">
+ //         <button type="button" class="close" data-dismiss="modal">&times;</button>
+ //         <h4 class="modal-title">landscape-10</h4>
+ //       </div>
+ //       <div class="modal-body">
+ //         <img src="images/landscape-10.jpg">
+ //       </div>
+ //     </div>
+ //
+ //   </div>
+ // </div>
+
+ $('.modal-image').attr({src : ''+imageUrl+''});
+ $('.modal-title').text(imageFilename);
+ $('#galleryModal').modal("show");
 
 
 //console.log('figure clicked css', imageUrl);
